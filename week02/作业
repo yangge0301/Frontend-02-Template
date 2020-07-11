@@ -1,0 +1,54 @@
+    //第二节课：
+	定义<AE> 为加法运算式。<ME>为乘法运算式。<KE>标识带括号的运算式。<MO>为乘法运算符，<AO>为加法运算符
+	<AE>::=<AE>|<AE><AO><ME>|<AE><AO><ME>|<AE><AO><KE>|<ME><AO><KE>
+	<ME>::=<AE>|<AE><MO><AE>|<AE><MO><ME>|<AE><MO><KE>|<ME><MO><KE>
+	<KE>::=<AE>|<ME>|"("+<AE>+")"|"("+<ME>+")"|"("+<KE>+")"|"("+<AE>+")"<AO><AE>|"("+<AE>+")"<AO><ME>|"("+<AE>+")"<AO><KE>|"("+<ME>+")"<AO><KE>|"("+<KE>+")"<AO><KE>|"("+<AE>+")"<MO><AE>|"("+<AE>+")"<MO><ME>|"("+<AE>+")"<MO><KE>|"("+<ME>+")"<MO><KE>|"("+<KE>+")"<MO><KE>|
+
+	//第四节课：
+	形式语言-用途：
+	数据描述语言：JSON、HTML、XML、SQL、CSS
+	编程语言：JAVA、C、C++、C#、PHP、JavaScript、go
+
+	形式语言-表达方式：
+	声明书语言：JSON、HTML、XML、SQL、CSS
+	命令式语言：JAVA、C、C++、PHP、C#、JavaScript
+	//第八节课：
+	[\u4e00-\u9fa5]+|[a-z]+|[A-Z]+|[0-9]+|\\n+|\\b+|\~+|\!+|\@+|\#+|\$+|\%+|\^+|\&+|\*+|\(+|\)+|\{+|\}+|\"+|\++|\|+|\:+|\<+|\>+|\?+|\=+|\-+|\'+|\;+|\[+|\]+|\/+|\.+|\,+
+
+	// 第十节课：
+
+	class Animal{
+
+		constructor(blood,name){
+			this.blood = blood;
+			this.name = name;
+		}
+		bite(){
+			console.log("Animal"+this.name+ "start bite ");
+		}
+
+	}
+	class Dog extends Animal{
+		constructor(name){
+			super(20,name)
+		}
+		bite(animal){
+			console.log("DOG==>"+this.name+"===>start bite");
+			animal.blood = animal.blood-5;
+			console.log("human===>"+animal.name+"===>blood is===>"+animal.blood)
+		}
+	}
+	class Human extends Animal{
+		constructor(name){
+			super(100,name);
+		}
+	}
+	let dog = new Dog("旺财");
+	let human = new Human("包子");
+	dog.bite(human)
+	//第十一节课：
+	Array
+	Date
+	Math
+	Functions
+	Events
