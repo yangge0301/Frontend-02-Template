@@ -15,6 +15,89 @@
 	//第八节课：
 	[\u4e00-\u9fa5]+|[a-z]+|[A-Z]+|[0-9]+|\\n+|\\b+|\~+|\!+|\@+|\#+|\$+|\%+|\^+|\&+|\*+|\(+|\)+|\{+|\}+|\"+|\++|\|+|\:+|\<+|\>+|\?+|\=+|\-+|\'+|\;+|\[+|\]+|\/+|\.+|\,+
 
+
+
+    第六节课：
+    //字符串转成二进制byte数组
+	function stringToByte(str){
+		var list = [];
+		if(str!=null&&str!=''&&str.length>0){
+			var strs = str.split('');
+			for(var i=0;i<strs.length;i++){
+				list.push(strs[i].charCodeAt().toString(2))
+			}
+		}
+		return list;
+	}
+	function stringToByteOnly(str){
+		return str.charCodeAt().toString(2)
+	}
+
+	console.log(byteToUtf8("付卓达A啊111"))
+	//二进制数组转为字符串
+	function byteToString(bstr){
+		var result = [];
+		if(bstr!=null&&bstr.length>0){
+
+			for(var i=0;i<bstr.length;i++){
+				var item = bstr[i];
+				var intCode = parseInt(item,2);//获取到二进制对应的unicode的第几位个数
+				var str = String.fromCharCode(intCode);//获取到这个位置对应的字符串是谁
+				result.push(str);
+
+			}
+		}
+		return result;
+	}
+
+
+	function byteToUtf8(str){
+		var list=new Array();
+		if(str!=null&&str.length>0){
+			for(var i=0;i<str.length;i++){
+				var item = str[i];
+				var ustr = [];
+				var sixitem = str.codePointAt(i)
+				if(sixitem>=0&&sixitem<128){
+					ustr[0]=sixitem;
+					list.push(ustr[0]);
+				}
+				else if(128<=sixitem&&sixitem<2048){
+					list.push(" ");
+					ustr[0] = 192|(sixitem>>6)//192二进制位11000000
+					ustr[1] = 128|(sixitem&63)//63二进制为111111
+					list.push(ustr[0])
+					list.push(ustr[1])
+
+				}
+				else if(2048<=sixitem&&sixitem<=65536){
+					console.log()
+					ustr[0] = 224|(sixitem>>12)//224对应11100000
+					ustr[1] = 192|((sixitem>>6)&63)
+					ustr[2] = 192|(sixitem&63)
+					list.push(ustr[0])
+					list.push(ustr[1])
+					list.push(ustr[2])
+				}
+				else {
+					ustr[0] = 240|(sixitem>>18)//224对应11110000
+					ustr[1] = 192|((sixitem>>12)&63)
+					ustr[2] = 192|((sixitem>>6)&63)
+					ustr[3] = 192|(sixitem&63)
+					list.push(ustr[0])
+					list.push(ustr[1])
+					list.push(ustr[2])
+					list.push(ustr[3])
+				}
+			}
+			return new Uint8Array(list).buffer;
+		}
+
+	}
+
+
+
+
 	// 第十节课：
 
 	class Animal{
